@@ -4,7 +4,6 @@ public class Test_2775 {
 
     public static void main(String[] args) {
 
-
         Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
@@ -15,11 +14,6 @@ public class Test_2775 {
         }
 
         int[] weight = new int[n];
-
-
     }
-
-
-
 
 }

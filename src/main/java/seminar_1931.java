@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class seminar_1931 {
 
@@ -20,13 +18,18 @@ public class seminar_1931 {
             arr[i][1] = b;
         }
 
-        for(int i=0; i<N; i++) {
-            for(int k=0; k<N; k++) {
-                //arr[i][1] - arr[i][0]
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                for(int i=0; i<N; i++) {
+                    if(arr[i][1] > arr[i+1][1]) {
+                        return Integer.compare(o1[0], o2[0]); //////////////
+                    }
+                }
+                return Integer.compare(o1[0], o2[0]);
+
             }
-        }
-
-
+        });
 
     }
 }
