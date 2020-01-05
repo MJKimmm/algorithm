@@ -18,6 +18,12 @@ public class ATM_11399 {
 
         Arrays.sort(line);
 
+        total = line[0];
+        for(int i=1; i<n; i++) {
+            line[i] += line[i-1];
+            total = total + line[i];
+        }
+/* 
         for(int i=0; i<n; i++) {
             if(i == 0) {
                 time[i] = line[i];
@@ -30,9 +36,11 @@ public class ATM_11399 {
             System.out.println(time[i]);
         }
 
+
+
         for (int i=0; i<n; i++) {
             total += time[i];
-        }
+        } */
 
         System.out.println("total : " + total);
     }
