@@ -23,7 +23,7 @@ public class ATM_11399 {
             line[i] += line[i-1];
             total = total + line[i];
         }
-/* 
+/*
         for(int i=0; i<n; i++) {
             if(i == 0) {
                 time[i] = line[i];
