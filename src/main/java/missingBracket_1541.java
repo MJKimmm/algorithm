@@ -2,38 +2,38 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class missingBracket_1541 {
+    static String[] str1;
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        String[] str1 = scanner.nextLine().split(" ");
+        str1 = scanner.nextLine().split("-");
 
         System.out.println(Arrays.toString(str1));
 
-        int num1 = 0;
         int sum = 0;
-
         for(int i=0; i<str1.length; i++) {
-
-            if((str1[i].charAt(0) != '+')  && (str1[i].charAt(0) != '-')) {
-                sum += Integer.parseInt(str1[i]);
+            if(i==0) {
+                sum += getSum(str1[i]);
             }
 
-            if(str1[i].charAt(0) == '-') {
-               for(int j=i+1; j <= str1.length-i; j+=2) {
-                    num1 += Integer.parseInt(str1[j]);
-
-                    if(str1[j].charAt(0) == '-')
-                        break;
-                }
-                System.out.println(num1);
+            else {
+                sum -= getSum(str1[i]);
             }
 
+            System.out.println(sum);
         }
 
-        sum += num1;
-        System.out.println(sum);
+    }
 
+    static int getSum(String str) {
+        int num1 = 0;
+        String[] str2 = str.split("\\+");
+
+        for(int j=0; j<str2.length; j++) {
+            num1 += Integer.parseInt(str2[j]);
+        }
+        return num1;
     }
 
 }
