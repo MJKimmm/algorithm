@@ -9,18 +9,16 @@ import java.util.Queue;
 
 public class cabbage_1012 {
 
-    public static int[][] map;
-    public static boolean[][] visited;
-    public static int m,n,k;
-    public static Queue<Pair> queue = new LinkedList<>();
-    public static ArrayList al = new ArrayList<>();
+    static int[][] map;
+    static boolean[][] visited;
+    static int m,n,k;
+    static Queue<Pair> queue = new LinkedList<>();
+    static ArrayList al = new ArrayList<>();
 
-    public static int[] dx = {-1,0,1,0};
-    public static int[] dy = {0,1,0,-1};
-
+    static int[] dx = {-1,0,1,0};
+    static int[] dy = {0,1,0,-1};
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] str = br.readLine().split(" ");
         m = Integer.parseInt(str[0]);
@@ -46,48 +44,41 @@ public class cabbage_1012 {
             }
         }
 
-        int cnt=0;
         for(int i=0; i<n; i++) {
             for(int j=0; j<m; j++) {
                 if(map[i][j] == 1 && !visited[i][j]) {
-                    cnt++;
-                    bfs(i,j);
-                    queue.add(new Pair(j,i));
+                    bfs(j,i);
                 }
             }
         }
 
-        //System.out.println(al.size());
-        System.out.println("aaaaaaaaaaaaaaa");
-        System.out.println(cnt);
-
+        System.out.println(al.size());
     }
 
-    static void bfs(int i, int j) {
-        //cnt=0;
+    static void bfs(int x, int y) {
+        visited[y][x] = true;
+        queue.add(new Pair(x,y));
+
+        int cnt=1;
         while(!queue.isEmpty()) {
             Pair p = queue.poll();
-            int x = p.x;
-            int y = p.y;
+            for(int k=0; k<4; k++) {
+                int targetX = p.x + dx[k];
+                int targetY = p.y + dy[k];
 
-            for (int q = 0; q < 4; i++) {
-                int targetX = x + dx[q];
-                int targetY = y + dy[q];
-
-                if(targetX >=0 && targetY>=0 && targetY<n && targetX<m) {
+                if(targetX>=0 && targetY>=0 && targetY<n && targetX <m) {
                     if(map[targetY][targetX] == 1 && !visited[targetY][targetX]) {
                         queue.add(new Pair(targetX, targetY));
                         visited[targetY][targetX] = true;
-                        //cnt++;
+                        cnt++;
                     }
                 }
             }
         }
 
-        //al.add(cnt);
-
+        al.add(cnt);
     }
-
 }
+
 
 
