@@ -22,38 +22,38 @@ public class queue_10845 {
                 case "push" :
                     int num2 = sc.nextInt();
                     queue.add(num2);
-                    continue;
+                    break;
 
                 case "pop" :
                     if(queue.isEmpty()) System.out.println(-1);
                     else System.out.println(queue.poll());
-                    continue;
+                    break;
 
                 case "size" :
                     System.out.println(queue.size());
-                    continue;
+                    break;
 
                 case "empty" :
-                    q2 = queue.isEmpty();
-                    if(q2 == true) q=1; else q=0;
-                    System.out.println(q);
-                    continue;
+                    if(queue.isEmpty()) System.out.println(1);
+                    else System.out.println(0);
+                    break;
 
                 case "front" :
                     if(queue.isEmpty()) System.out.println(-1);
                     else System.out.println(queue.peek());
-                    continue;
+                    break;
 
                 case "back" :
                     int size = queue.size();
-                    try {
+                    if(queue.isEmpty()) System.out.println(-1);
+                    else {
                         while(size-- >1) {
-                            queue.poll();
+                            queue.add(queue.poll());
                         }
-                    } catch(EmptyStackException e) {
-                        System.out.println(-1);
+                        System.out.println(queue.peek());
+                        queue.add(queue.poll());
                     }
-                    continue;
+                    break;
             }
         }
 
