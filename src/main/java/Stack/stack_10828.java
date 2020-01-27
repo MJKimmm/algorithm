@@ -23,33 +23,24 @@ public class stack_10828 {
                 case "push" :
                     data = sc.nextInt();
                     stack.push(data);
-                    continue;
+                    break;
 
                 case "pop" :
-                    try {
-                        buffer = stack.pop();
-                    } catch(EmptyStackException e) {
-                        buffer = -1;
-                    }
-                    System.out.println(buffer);
-                    continue;
+                    if(stack.isEmpty()) System.out.println(-1);
+                    else System.out.println(stack.pop());
+                    break;
 
                 case "size" :
                     System.out.println(stack.size());
-                    continue;
+                    break;
                 case "empty" :
-                    buffer2 = stack.empty();
-                    if(buffer2 == false) buffer = 0; else buffer = 1; // 비지않았으면 buffer=0
-                    System.out.println(buffer);
-                    continue;
+                    if(stack.isEmpty()) System.out.println(1);
+                    else System.out.println(0);
+                    break;
                 case "top" :
-                    try {
-                        buffer = stack.peek();
-                    } catch(EmptyStackException e) {
-                        buffer = -1;
-                    }
-                    System.out.println(buffer);
-                    continue;
+                    if(stack.isEmpty()) System.out.println(-1);
+                    else System.out.println(stack.peek());
+                    break;
             }
         }
     }
