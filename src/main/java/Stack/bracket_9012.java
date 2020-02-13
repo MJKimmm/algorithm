@@ -6,49 +6,53 @@ import java.util.Stack;
 
 public class bracket_9012 {
 
+    static Stack<Integer> stack = new Stack<>();
+
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
-
         int num = sc.nextInt();
-        Stack<Integer> stack = new Stack<>();
-        ArrayList<String> arr = new ArrayList<>();
 
-        for(int i=0; i<num; i++) {
+        for (int i = 0; i < num; i++) {
             String str = sc.next();
+            //YesNo(str);
 
-            for(int j=0; j<str.length(); j++) {
-                char ch = str.charAt(j);
+            if(YesNo(str) == true) {
+                System.out.println("YES");
+            }
+            else {
+                System.out.println("NO");
+            }
 
-                if(ch == '(')
-                    stack.push(j);
+        }
+    }
 
+    static boolean YesNo(String str) {
+        boolean flag = true;
+
+        for(int i=0; i<str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if(ch == '(') {
+                stack.push(i);
+            }
+            else {
+                if(!stack.isEmpty()) {
+                    stack.pop();
+                }
                 else {
-                    if (str.charAt(j-1) == '(') {
-                        stack.pop();
-                    } else {
-                        if (stack.isEmpty() != true)
-                            stack.pop();
-                        else
-                            break;
-                    }
+                    flag = false;
                 }
 
-                if(j == str.length()-1) {
-                    if(stack.isEmpty() == true) {
-                        //System.out.println("YES");
-                        arr.add("YES");
-                    }
-
-                    else
-                        //System.out.println("NO");
-                        arr.add("NO");
-                }
             }
         }
 
-        for(int k=0; k<arr.size(); k++) {
-            System.out.println(arr.get(k));
-        }
+        if(flag == false)
+            return false;
+
+        else if (flag == true && !stack.isEmpty())
+            return false;
+
+        else
+            return true;
     }
 }
