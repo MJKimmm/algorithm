@@ -1,7 +1,8 @@
 package Greedy;
 
-public class programmers_makingnumber {
+import java.util.ArrayList;
 
+public class programmers_makingnumber {
 
 }
 
@@ -14,18 +15,19 @@ class Solution1 {
             arr[i] = answer.charAt(i);
         }
 
-        int answer_len = answer.length()-k; // 6
         int max = 0;
-
         int flag=0;
-        for (int i = answer_len - 1; i < arr.length; i++) {
-            for (int j = flag; j < answer_len - 1; j++) {
+
+        for (int i = k+1 ; i < arr.length; i++) {
+            for (int j = flag; j < i ; j++) {
                 if (max < arr[j]) {
                     max = arr[j];
                     flag = j + 1;
                 }
-
             }
+
+            answer += String.valueOf(max);
+
         }
 
 
