@@ -3,35 +3,37 @@ package Greedy;
 import java.util.ArrayList;
 
 public class programmers_makingnumber {
+    public static void main(String[] args) {
+        System.out.println(Solution1.solution("4177252841",4));
+    }
 
 }
 
 class Solution1 {
-    public String solution(String number, int k) {
+    public static String solution(String number, int k) {
         String answer = "";
 
-        int[] arr = new int[answer.length()];
+        int[] arr = new int[number.length()];
         for(int i=0; i<arr.length; i++) {
-            arr[i] = answer.charAt(i);
+            arr[i] = number.charAt(i)-'0';
         }
 
-        int max = 0;
-        int flag=0;
 
-        for (int i = k+1 ; i < arr.length; i++) {
-            for (int j = flag; j < i ; j++) {
+        int start=0;
+
+        for (int end = k+1 ; end < arr.length+1; end++) {
+            int index = 0;
+            int max = 0;
+            for (int j = start; j < end ; j++) {
                 if (max < arr[j]) {
                     max = arr[j];
-                    flag = j + 1;
+                    index = j+1;
                 }
             }
-
+            System.out.println(start + " " + end + " " + max + " " + index);
+            start = index;
             answer += String.valueOf(max);
-
         }
-
-
-
         return answer;
     }
 }
