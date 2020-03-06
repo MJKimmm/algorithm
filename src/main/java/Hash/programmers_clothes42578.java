@@ -34,10 +34,17 @@ class Solution2 {
         int m=0;
         for(String a:hm.keySet()) {
             for(String b:hm.keySet()) {
-                if(hm.get(a) != hm.get(b) && a!=b) {
+              /*  if(hm.get(a) != hm.get(b) && a!=b) {
+                    System.out.println(a + b);
+
+                } */
+
+                if(!hm.get(a).equals(hm.get(b)) && a!=b) {
                     System.out.println(a + b);
                     m++;
+
                 }
+
             }
         }
         answer += m/2;
