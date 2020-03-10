@@ -14,7 +14,7 @@ public class progresses42586 {
 
 class Solution {
     public static int[] solution(int[] progresses, int[] speeds) {
-        int[] answer = {};
+        //int[] answer = {};
 
         Stack<Integer> stack = new Stack<>();
         int N = progresses.length;
@@ -37,24 +37,6 @@ class Solution {
             arrDay[i][1] = day;
         }
 
-     /*   for(int i=0; i<N; i++) {
-            int flag = i+1;
-            stack.push(arrDay[i][0]);
-            for(int j=flag; j<N; j++) {
-                if(arrDay[i][1] >= arrDay[flag][1]) {
-                    stack.push(arrDay[flag][0]);
-                }
-                flag++;
-            }
-
-            int popDay = 0;
-            while(!stack.isEmpty()) {
-                stack.pop();
-                popDay++;
-            }
-            System.out.println(popDay);
-        } */
-
      Arrays.sort(arrDay, new Comparator<int[]>() {
          @Override
          public int compare(int[] o1, int[] o2) {
@@ -63,6 +45,8 @@ class Solution {
          }
      });
 
+     ArrayList<Integer> popArr = new ArrayList<>();
+
      int flag = 0;
      int start=0;
      for(int i=start; i<N; i++) {
@@ -70,14 +54,28 @@ class Solution {
          stack.push(arrDay[i][0]);
          if(arrDay[i][0] == flag) {
              start=i+1;
-             stack.push(arrDay[i][0]);
+             //stack.push(arrDay[i][0]);
              while(!stack.isEmpty()) {
                  stack.pop();
                  popDay++;
              }
              flag++;
          }
-         System.out.println(popDay);
+         //System.out.println(popDay);
+         if(popDay!=0) {
+             popArr.add(popDay);
+         }
+
+     }
+
+     int[] answer = new int[popArr.size()];
+
+     for(int i=0; i<popArr.size(); i++) {
+         answer[i] += popArr.get(i);
+     }
+
+     for(int i=0; i<popArr.size(); i++) {
+         System.out.println(answer[i]);
      }
 
 
