@@ -37,47 +37,34 @@ class Solution {
             arrDay[i][1] = day;
         }
 
-     Arrays.sort(arrDay, new Comparator<int[]>() {
-         @Override
-         public int compare(int[] o1, int[] o2) {
-             if(o1[1]==o2[1]) return o1[0]-o2[0];
-             return o1[1]-o2[1];
-         }
-     });
+        int cnt=1;
+        ArrayList<Integer> popArr = new ArrayList<>();
 
-     ArrayList<Integer> popArr = new ArrayList<>();
+        for(int i=0; i<arrDay.length; i++) {
+            for(int j=i+1; j<arrDay.length; j++) {
+                if(arrDay[i][1] < arrDay[j][1]) {
+                    break;
+                }
+                else {
+                    cnt++;
+                }
+            }
+            popArr.add(cnt);
+            i = cnt+i-1;
+            cnt = 1;
+        }
 
-     int flag = 0;
-     int start=0;
-     for(int i=start; i<N; i++) {
-         int popDay = 0;
-         stack.push(arrDay[i][0]);
-         if(arrDay[i][0] == flag) {
-             start=i+1;
-             //stack.push(arrDay[i][0]);
-             while(!stack.isEmpty()) {
-                 stack.pop();
-                 popDay++;
-             }
-             flag++;
-         }
-         //System.out.println(popDay);
-         if(popDay!=0) {
-             popArr.add(popDay);
-         }
 
-     }
 
-     int[] answer = new int[popArr.size()];
+        int[] answer = new int[popArr.size()];
 
-     for(int i=0; i<popArr.size(); i++) {
-         answer[i] += popArr.get(i);
-     }
+        for(int i=0; i<popArr.size(); i++) {
+            answer[i] += popArr.get(i);
+        }
 
-     for(int i=0; i<popArr.size(); i++) {
-         System.out.println(answer[i]);
-     }
-
+        for(int i=0; i<popArr.size(); i++) {
+            System.out.println(answer[i]);
+        }
 
         return answer;
     }
